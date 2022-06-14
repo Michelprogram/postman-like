@@ -1,7 +1,11 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string;
-}>();
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core";
+
+export default defineComponent({
+  props: {
+    msg: String,
+  },
+});
 </script>
 
 <template>
@@ -12,10 +16,21 @@ defineProps<{
       <a target="_blank" href="https://vitejs.dev/">Vite</a> +
       <a target="_blank" href="https://vuejs.org/">Vue 3</a>.
     </h3>
+    <ul>
+      <li class="badge">default</li>
+      <li class="badge badge--primary">primary</li>
+      <li class="badge badge--secondary">secondary</li>
+      <li class="badge badge--dark">dark</li>
+      <li class="badge badge--success">success</li>
+      <li class="badge badge--warning">warning</li>
+      <li class="badge badge--error">error</li>
+    </ul>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@import "sierra-library/lib/index";
+
 h1 {
   font-weight: 500;
   font-size: 2.6rem;

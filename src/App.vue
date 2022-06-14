@@ -1,25 +1,18 @@
-<script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core";
+import HelloWorld from "@/components/HelloWorld.vue";
+
+export default defineComponent({
+  name: "app",
+  components: {
+    HelloWorld,
+  },
+});
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
   <main>
-    <TheWelcome />
+    <HelloWorld msg="Dorian" />
   </main>
 </template>
 
