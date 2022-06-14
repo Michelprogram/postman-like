@@ -13,15 +13,26 @@ export default defineComponent({
     Methods,
     Parameters,
   },
+  data() {
+    return {
+      uri: "",
+      methods: "GET",
+    };
+  },
+  methods: {
+    updateMethods(variable: string): void {
+      this.methods = variable;
+    },
+  },
 });
 </script>
 
 <template>
   <main>
     <Title />
-    <Methods />
-    <Uri />
+    <Methods @methods="updateMethods" />
     <Parameters />
+    <Uri :methods="methods" />
   </main>
 </template>
 

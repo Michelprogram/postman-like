@@ -30,6 +30,8 @@ export default defineComponent({
     },
     setMethods(methods: string): void {
       this.methods_select = methods;
+      this.$emit("methods", methods);
+      console.log("update");
     },
   },
 });
