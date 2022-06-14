@@ -1,18 +1,27 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import HelloWorld from "@/components/HelloWorld.vue";
+import Title from "@/components/Title.vue";
+import Uri from "@/components/Uri.vue";
+import Methods from "@/components/Methods.vue";
+import Parameters from "@/components/Parameters.vue";
 
 export default defineComponent({
   name: "app",
   components: {
-    HelloWorld,
+    Title,
+    Uri,
+    Methods,
+    Parameters,
   },
 });
 </script>
 
 <template>
   <main>
-    <HelloWorld msg="Dorian" />
+    <Title />
+    <Methods />
+    <Uri />
+    <Parameters />
   </main>
 </template>
 
