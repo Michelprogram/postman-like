@@ -17,9 +17,12 @@
 import { defineComponent } from "@vue/runtime-core";
 export default defineComponent({
   name: "methods-component",
+  props: {
+    methods: String,
+  },
   data() {
     return {
-      methods_select: "GET",
+      methods_select: this.methods,
     };
   },
   methods: {
@@ -31,7 +34,6 @@ export default defineComponent({
     setMethods(methods: string): void {
       this.methods_select = methods;
       this.$emit("methods", methods);
-      console.log("update");
     },
   },
 });

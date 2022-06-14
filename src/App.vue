@@ -4,6 +4,7 @@ import Title from "@/components/Title.vue";
 import Uri from "@/components/Uri.vue";
 import Methods from "@/components/Methods.vue";
 import Parameters from "@/components/Parameters.vue";
+import ResponseVue from "./components/Response.vue";
 
 export default defineComponent({
   name: "app",
@@ -12,16 +13,21 @@ export default defineComponent({
     Uri,
     Methods,
     Parameters,
+    ResponseVue,
   },
   data() {
     return {
       uri: "",
       methods: "GET",
+      response: {},
     };
   },
   methods: {
     updateMethods(variable: string): void {
       this.methods = variable;
+    },
+    updateResponse(variable: Record<string, any>): void {
+      this.response = variable;
     },
   },
 });
@@ -30,9 +36,10 @@ export default defineComponent({
 <template>
   <main>
     <Title />
-    <Methods @methods="updateMethods" />
+    <Methods @methods="updateMethods" :methods="methods" />
     <Parameters />
-    <Uri :methods="methods" />
+    <Uri :methods="methods" @response="updateResponse" />
+    <ResponseVue :response="response" />
   </main>
 </template>
 
