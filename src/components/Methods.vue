@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <ul class="methods">
       <li :class="isSelected('GET')" @click="setMethods('GET')">GET</li>
       <li :class="isSelected('POST')" @click="setMethods('POST')">POST</li>
       <li :class="isSelected('DELETE')" @click="setMethods('DELETE')">
@@ -41,13 +41,19 @@ export default defineComponent({
 <style lang="scss">
 @import "sierra-library/lib/index";
 
-ul {
+.methods {
+  display: flex;
+  justify-content: space-between;
   .badge {
     cursor: pointer;
     transition: background-color 0.5s ease-in;
 
     &--dark:hover {
       background-color: hsl(212, 12%, 49%);
+    }
+
+    &--success {
+      background-color: hsla(160, 100%, 37%, 1);
     }
   }
 }

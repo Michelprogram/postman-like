@@ -12,8 +12,8 @@ export default defineComponent({
     Title,
     Uri,
     Methods,
-    Parameters,
-    ResponseVue,
+    /*     Parameters,
+     */ ResponseVue,
   },
   data() {
     return {
@@ -34,31 +34,52 @@ export default defineComponent({
 </script>
 
 <template>
-  <main>
-    <Title />
-    <Methods @methods="updateMethods" :methods="methods" />
-    <Parameters />
-    <Uri :methods="methods" @response="updateResponse" />
-    <ResponseVue :response="response" />
+  <main class="container-app">
+    <div class="left-part">
+      <Title />
+      <Methods @methods="updateMethods" :methods="methods" />
+      <!--     <Parameters />
+ -->
+      <Uri :methods="methods" @response="updateResponse" />
+    </div>
+    <div class="right-part">
+      <ResponseVue :response="response" />
+    </div>
   </main>
 </template>
 
-<style>
+<style lang="scss">
 @import "./assets/base.css";
 
-#app {
-  font-weight: normal;
-}
+.container-app {
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 50px;
 
-header {
-  line-height: 1.5;
-}
+  margin-left: 10%;
+  height: 100vh;
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+  .left-part,
+  .right-part {
+    width: 80%;
+  }
+
+  .left-part {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .right-part {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 
 @media (hover: hover) {
@@ -69,24 +90,9 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    place-items: center;
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 }
 </style>
