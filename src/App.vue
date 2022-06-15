@@ -19,14 +19,14 @@ export default defineComponent({
     return {
       uri: "",
       methods: "GET",
-      response: {},
+      response: "",
     };
   },
   methods: {
     updateMethods(variable: string): void {
       this.methods = variable;
     },
-    updateResponse(variable: Record<string, any>): void {
+    updateResponse(variable: string): void {
       this.response = variable;
     },
   },

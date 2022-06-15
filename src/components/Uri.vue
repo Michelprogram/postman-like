@@ -55,7 +55,9 @@ export default defineComponent({
         signal: signal,
       })
         .then((response) => {
-          this.$emit("response", response.status);
+          response.json().then((c: any) => {
+            this.$emit("response", JSON.stringify(c, undefined, 2));
+          });
         })
         .catch((r) => {
           console.log("Error :", r);
