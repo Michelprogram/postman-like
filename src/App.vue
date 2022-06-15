@@ -47,12 +47,6 @@ export default defineComponent({
   margin-left: 10%;
   height: 100vh;
 
-  .left-part,
-  .right-part {
-    width: 80%;
-    max-width: 80%;
-  }
-
   .left-part {
     height: 100%;
     display: flex;

@@ -50,11 +50,14 @@ div {
   .json-data {
     position: relative;
     pre {
+      display: block;
       color: white;
       background-color: #18232f;
       overflow: scroll;
-      max-height: 500px;
+      max-height: 300px;
       min-height: 300px;
+      max-width: 500px;
+      min-width: 100%;
       border-radius: 3px;
       z-index: -10;
       transition: filter 0.5s ease-in;
