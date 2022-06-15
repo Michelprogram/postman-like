@@ -47,20 +47,11 @@ export default defineComponent({
 @import "./assets/base.css";
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
   font-weight: normal;
 }
 
 header {
   line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
 }
 
 a,
@@ -78,14 +69,12 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
     place-items: center;
   }
 
   #app {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 
   header {
@@ -98,10 +87,6 @@ a,
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 }
 </style>

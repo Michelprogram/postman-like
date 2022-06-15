@@ -12,9 +12,9 @@
         Send
       </button>
     </div>
-    <p>Methods : {{ methods }}</p>
+
     <div v-if="animate">
-      <WaitingVue />
+      <WaitingVue @cancel="cancelRequest()" />
     </div>
   </div>
 </template>
@@ -30,13 +30,19 @@ export default defineComponent({
   },
   data() {
     return {
-      uri: "",
+      uri: "https://jsonplaceholder.typicode.com/todos/1",
       animate: false,
+      timer: 0,
     };
   },
   methods: {
     sendRequest() {
-      var myInit = {
+      this.triggerAnimate();
+
+      this.timer = setTimeout(() => {
+        this.triggerAnimate();
+      }, 100000);
+      /*       var myInit = {
         method: this.methods,
         mode: "cors",
         cache: "default",
@@ -54,10 +60,14 @@ export default defineComponent({
         })
         .finally(() => {
           this.triggerAnimate();
-        });
+        }); */
     },
     triggerAnimate() {
       this.animate = !this.animate;
+    },
+    cancelRequest() {
+      this.triggerAnimate();
+      clearTimeout(this.timer);
     },
     emit() {
       this.$emit("response", "ttt");
