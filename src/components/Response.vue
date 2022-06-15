@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Response en {{ this.$store.getters.getTimer }} s</p>
+    <p>Response {{ displayTime }}</p>
     <pre>{{ response }}</pre>
   </div>
 </template>
@@ -10,6 +10,12 @@ export default defineComponent({
   name: "response-component",
   props: {
     response: String,
+  },
+  computed: {
+    displayTime(): string {
+      const time: string = this.$store.getters.getTimer;
+      return time == "" ? time : `en ${time}s`;
+    },
   },
 });
 </script>
