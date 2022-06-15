@@ -25,15 +25,13 @@ import WaitingVue from "./Waiting.vue";
 
 export default defineComponent({
   name: "URI",
-  props: {
-    methods: String,
-  },
   data() {
     return {
       uri: "https://jsonplaceholder.typicode.com/todos/1",
       animate: false,
       timer: 0,
       controller: {} as AbortController,
+      method: this.$store.getters["method/method"],
     };
   },
   methods: {
@@ -46,17 +44,19 @@ export default defineComponent({
         this.triggerAnimate();
       }, 100000); */
       var myInit = {
-        method: this.methods,
+        method: this.method,
         mode: "cors",
         cache: "default",
       };
       fetch(this.uri, {
-        method: this.methods,
+        method: this.method,
         signal: signal,
       })
         .then((response) => {
           response.json().then((c: any) => {
-            this.$emit("response", JSON.stringify(c, undefined, 2));
+            this.$store.commit("response/response", {
+              data: JSON.stringify(c, undefined, 2),
+            });
           });
         })
         .catch((r) => {
@@ -71,9 +71,6 @@ export default defineComponent({
     },
     cancelRequest() {
       this.controller.abort();
-    },
-    emit() {
-      this.$emit("response", "ttt");
     },
   },
   components: { WaitingVue },

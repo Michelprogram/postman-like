@@ -15,21 +15,6 @@ export default defineComponent({
     /*     Parameters,
      */ ResponseVue,
   },
-  data() {
-    return {
-      uri: "",
-      methods: "GET",
-      response: "",
-    };
-  },
-  methods: {
-    updateMethods(variable: string): void {
-      this.methods = variable;
-    },
-    updateResponse(variable: string): void {
-      this.response = variable;
-    },
-  },
 });
 </script>
 
@@ -37,13 +22,13 @@ export default defineComponent({
   <main class="container-app">
     <div class="left-part">
       <Title />
-      <Methods @methods="updateMethods" :methods="methods" />
+      <Methods />
       <!--     <Parameters />
  -->
-      <Uri :methods="methods" @response="updateResponse" />
+      <Uri />
     </div>
     <div class="right-part">
-      <ResponseVue :response="response" />
+      <ResponseVue />
     </div>
   </main>
 </template>
