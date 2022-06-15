@@ -50,6 +50,7 @@ export default defineComponent({
   .left-part,
   .right-part {
     width: 80%;
+    max-width: 80%;
   }
 
   .left-part {

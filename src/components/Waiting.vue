@@ -25,6 +25,7 @@ export default defineComponent({
   },
   methods: {
     cancel() {
+      this.timer = 0;
       this.$emit("cancel");
     },
   },
