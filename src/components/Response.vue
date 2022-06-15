@@ -49,6 +49,7 @@ div {
 
   .json-data {
     position: relative;
+    z-index: -1;
     pre {
       display: block;
       color: white;
