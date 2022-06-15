@@ -33,41 +33,42 @@ export default defineComponent({
       uri: "https://jsonplaceholder.typicode.com/todos/1",
       animate: false,
       timer: 0,
+      controller: {} as AbortController,
     };
   },
   methods: {
     sendRequest() {
       this.triggerAnimate();
+      this.controller = new AbortController();
+      const signal = this.controller.signal;
 
-      this.timer = setTimeout(() => {
+      /*       this.timer = setTimeout(() => {
         this.triggerAnimate();
-      }, 100000);
-      /*       var myInit = {
+      }, 100000); */
+      var myInit = {
         method: this.methods,
         mode: "cors",
         cache: "default",
       };
-
-      this.triggerAnimate();
       fetch(this.uri, {
         method: this.methods,
+        signal: signal,
       })
         .then((response) => {
           this.$emit("response", response.status);
         })
         .catch((r) => {
-          console.log(r);
+          console.log("Error :", r);
         })
         .finally(() => {
           this.triggerAnimate();
-        }); */
+        });
     },
     triggerAnimate() {
       this.animate = !this.animate;
     },
     cancelRequest() {
-      this.triggerAnimate();
-      clearTimeout(this.timer);
+      this.controller.abort();
     },
     emit() {
       this.$emit("response", "ttt");
