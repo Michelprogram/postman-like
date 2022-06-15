@@ -5,20 +5,22 @@
       <pre :class="classCopied">{{
         this.$store.getters["response/response"]
       }}</pre>
-      <span class="copy-content" @click="copy()"
-        ><img :src="img" alt=""
-      /></span>
+      <span class="copy-content" @click="copy()">
+        <Copy />
+      </span>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import Copy from "../assets/copy.svg";
+import Copy from "./icons/IconCopy.vue";
 export default defineComponent({
   name: "response-component",
+  components: {
+    Copy,
+  },
   data() {
     return {
-      img: Copy,
       copied: false,
     };
   },
