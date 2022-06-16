@@ -12,8 +12,8 @@ export default defineComponent({
     Title,
     Uri,
     Methods,
-    /*     Parameters,
-     */ ResponseVue,
+    Parameters,
+    ResponseVue,
   },
 });
 </script>
@@ -23,9 +23,8 @@ export default defineComponent({
     <div class="left-part">
       <Title />
       <Methods />
-      <!--     <Parameters />
- -->
       <Uri />
+      <Parameters />
     </div>
     <div class="right-part">
       <ResponseVue />
@@ -47,18 +46,12 @@ export default defineComponent({
   margin-left: 10%;
   height: 100vh;
 
-  .left-part {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
+  .left-part,
   .right-part {
-    display: flex;
     height: 100%;
-    justify-content: center;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 }
 

@@ -12,3 +12,8 @@ export default defineComponent({
   name: "copy-icon",
 });
 </script>
+<style lang="scss">
+svg {
+  cursor: pointer;
+}
+</style>

@@ -76,6 +76,13 @@ export default defineComponent({
   components: { WaitingVue },
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "sierra-library/lib/index";
+.button {
+  background-color: hsla(160, 100%, 37%, 1);
+
+  &:hover {
+    background-color: rgb(2, 150, 101);
+  }
+}
 </style>

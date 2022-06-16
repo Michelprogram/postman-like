@@ -1,19 +1,26 @@
 <template>
   <div>
-    <div class="tabs">
-      <a href="" class="tabs-item">Params</a>
-      <a href="" class="tabs-item is-selected">Authorization</a>
-      <a href="#" class="tabs-item">Headers</a>
-    </div>
-    <div class="tab1" id="tab1">
-      <p>oui</p>
-    </div>
+    <TabsWrapperVue :tabs="tabs" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
+import TabsWrapperVue from "./TabsWrapper.vue";
+import Header from "./Headers.vue";
+import Authorizathion from "./Authorizations.vue";
 export default defineComponent({
   name: "parameters-component",
+  components: {
+    TabsWrapperVue,
+  },
+  data() {
+    return {
+      tabs: [
+        { title: "Headers", component: Header },
+        { title: "Authorization", component: Authorizathion },
+      ],
+    };
+  },
 });
 </script>
 <style lang="scss">
