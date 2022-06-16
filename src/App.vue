@@ -49,9 +49,9 @@ export default defineComponent({
   .left-part,
   .right-part {
     height: 100%;
+    border: 2px solid red;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 }
 

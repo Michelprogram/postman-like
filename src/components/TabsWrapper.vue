@@ -43,6 +43,7 @@ export default defineComponent({
 <style lang="scss">
 @import "sierra-library/lib/index";
 .tabs-item {
+  z-index: 0;
   &:hover {
     background-color: transparent;
   }

@@ -22,7 +22,7 @@ export default defineComponent({
       tabs: [
         { title: "Réponse", component: Data },
         { title: "History", component: HistoryVue },
-      ] as ITab[],
+      ],
     };
   },
 });

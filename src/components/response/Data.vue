@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Response {{ displayTime }}</p>
+    <p>Time {{ displayTime }}</p>
     <div class="json-data">
       <pre :class="classCopied">{{
         this.$store.getters["response/response"]
@@ -13,7 +13,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import Copy from "@/components/icons/IconCopy.vue";
+import Copy from "@/components/icons/Copy.vue";
 export default defineComponent({
   name: "data-component",
   components: {
@@ -34,7 +34,7 @@ export default defineComponent({
   computed: {
     displayTime(): string {
       const time: string = this.$store.getters["timer/timer"];
-      return time == "" || time == "0.00" ? "" : `en ${time}s`;
+      return time == "" || time == "0.00" ? "" : time;
     },
     classCopied(): string {
       return this.copied ? "copied" : "";

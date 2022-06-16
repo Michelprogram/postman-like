@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts">
+import type IHistory from "@/interfaces/history";
 import { defineComponent } from "@vue/runtime-core";
 import WaitingVue from "./Waiting.vue";
 
@@ -64,6 +65,16 @@ export default defineComponent({
         })
         .finally(() => {
           this.triggerAnimate();
+          const history: IHistory = {
+            time: this.timer + "",
+            httpCode: 200,
+            data: "string",
+            request: this.uri,
+            method: this.method,
+          };
+          this.$store.commit("history/add", {
+            history: history,
+          });
         });
     },
     triggerAnimate() {
