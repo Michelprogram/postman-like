@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <p>Time {{ displayTime }}</p>
+  <div class="container-data">
+    <div class="informations">
+      <p>Time {{ displayTime }}</p>
+      <Copy class="copy-content" @click="copy()" />
+    </div>
     <div class="json-data">
       <pre :class="classCopied">{{
         this.$store.getters["response/response"]
       }}</pre>
-      <span class="copy-content" @click="copy()">
-        <Copy />
-      </span>
     </div>
   </div>
 </template>
@@ -45,37 +45,48 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "sierra-library/lib/index";
 
-div {
-  width: 100%;
-  max-width: 100%;
+.container-data {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: 100%;
+  position: relative;
+
+  .informations {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+    .copy-content {
+      width: 30px;
+      cursor: pointer;
+      z-index: 0;
+    }
+  }
 
   .json-data {
-    position: relative;
     z-index: -1;
+    background-color: #18232f;
+    height: auto;
+
     pre {
       display: block;
       color: white;
-      background-color: #18232f;
-      overflow: scroll;
-      max-height: 300px;
-      min-height: 300px;
+      height: 100%;
       max-width: 500px;
       min-width: 100%;
       border-radius: 3px;
-      z-index: -10;
       transition: filter 0.5s ease-in;
+      white-space: pre-wrap;
     }
 
     .copied {
       filter: blur(2px);
-    }
-
-    .copy-content {
-      position: absolute;
-      width: 30px;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
     }
   }
 }

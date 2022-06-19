@@ -48,10 +48,13 @@ export default defineComponent({
 
   .left-part,
   .right-part {
-    height: 100%;
+    height: 95%;
+    max-height: 95%;
+    min-height: 95%;
     border: 2px solid red;
     display: flex;
     flex-direction: column;
+    margin-top: 5%;
   }
 }
 

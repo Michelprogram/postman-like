@@ -10,11 +10,14 @@
         >{{ tab.title }}</a
       >
     </div>
-    <div v-for="(tab, index) in tabs" :key="index">
-      <keep-alive>
-        <component v-show="isSelected(index)" :is="tab.component"></component>
-      </keep-alive>
-    </div>
+    <keep-alive>
+      <component
+        v-for="(tab, index) in tabs"
+        :key="index"
+        v-show="isSelected(index)"
+        :is="tab.component"
+      ></component>
+    </keep-alive>
   </div>
 </template>
 <script lang="ts">
@@ -42,10 +45,13 @@ export default defineComponent({
 </script>
 <style lang="scss">
 @import "sierra-library/lib/index";
-.tabs-item {
-  z-index: 0;
-  &:hover {
-    background-color: transparent;
+.tabs {
+  height: 8%;
+  .tabs-item {
+    z-index: 0;
+    &:hover {
+      background-color: transparent;
+    }
   }
 }
 </style>

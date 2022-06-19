@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <TabsWrapperVue :tabs="tabs" />
-  </div>
+  <TabsWrapperVue :tabs="tabs" class="container-response" />
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
@@ -27,6 +25,12 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "sierra-library/lib/index";
+
+.container-response {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 </style>
