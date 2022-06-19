@@ -7,6 +7,7 @@
     <table class="table">
       <thead>
         <tr class="text-small text-left">
+          <th>Id</th>
           <th>URL</th>
           <th>Method</th>
           <th>Code</th>
@@ -20,6 +21,8 @@
           :key="index"
           :class="httpCode(history) + ' history'"
         >
+          <td class="info-request">{{ history.id }}</td>
+
           <td class="info-request">{{ history.request }}</td>
           <td class="info-request">{{ history.method }}</td>
           <td class="info-request">{{ history.httpCode }}</td>
@@ -44,7 +47,12 @@ export default defineComponent({
   },
   methods: {
     httpCode(history: IHistory): string {
-      return history.httpCode != 200 ? "warning" : "sucess";
+      const code: number = history.httpCode;
+      if (code >= 100 && code <= 199) return "code-informations";
+      if (code >= 200 && code <= 299) return "code-success";
+      if (code >= 300 && code <= 399) return "code-redirection";
+      if (code >= 400 && code <= 499) return "code-error-client";
+      return "code-error-server";
     },
     removeAll(): void {
       this.$store.commit("history/delAll");
@@ -52,12 +60,19 @@ export default defineComponent({
   },
   computed: {
     histories(): Array<IHistory> {
-      return this.$store.getters["history/all"] as Array<IHistory>;
+      let res = [];
+      const start = this.$store.getters["history/reversed"] as Array<IHistory>;
+      for (let index = start.length; index > 0; index--) {
+        const element = start[index];
+        res.push(element);
+      }
+      return res;
     },
   },
 });
 </script>
 <style lang="scss" scoped>
+@use "../../assets/variables" as color;
 @import "sierra-library/lib/index";
 
 $green: rgb(102, 199, 115);
@@ -65,6 +80,7 @@ $red: rgb(111, 61, 61);
 
 .container-history {
   margin-top: 2%;
+  overflow: scroll;
 
   .options {
     width: 30%;
@@ -77,10 +93,27 @@ $red: rgb(111, 61, 61);
       width: 25px;
     }
   }
+
+  .table {
+    border-spacing: 10px;
+
+    td,
+    th {
+      padding: 20px;
+    }
+    th {
+      font-size: 1.1em;
+    }
+
+    td {
+      margin-bottom: 3%;
+    }
+  }
   .history {
     background-color: white;
     border-radius: 3px;
     color: black;
+    padding: 10px;
   }
 
   .info-request {
@@ -88,12 +121,24 @@ $red: rgb(111, 61, 61);
     cursor: pointer;
   }
 
-  .success {
-    background-color: $green;
-  }
-
-  .warning {
-    background-color: $red;
+  .code {
+    &-informations {
+      background-color: color.$error-100;
+    }
+    &-success {
+      background-color: color.$error-200;
+    }
+    &-redirection {
+      background-color: color.$error-300;
+    }
+    &-error {
+      &-client {
+        background-color: color.$error-400;
+      }
+      &-server {
+        background-color: color.$error-500;
+      }
+    }
   }
 }
 </style>
