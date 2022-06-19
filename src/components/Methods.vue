@@ -36,6 +36,8 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+@use "../assets/variables" as color;
+
 @import "sierra-library/lib/index";
 
 .methods {
@@ -46,11 +48,11 @@ export default defineComponent({
     transition: background-color 0.5s ease-in;
 
     &--dark:hover {
-      background-color: hsl(212, 12%, 49%);
+      background-color: color.$gray;
     }
 
     &--success {
-      background-color: hsla(160, 100%, 37%, 1);
+      background-color: color.$green-light;
     }
   }
 }

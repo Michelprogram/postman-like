@@ -88,12 +88,15 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@use "../assets/variables" as color;
+
 @import "sierra-library/lib/index";
 .button {
-  background-color: hsla(160, 100%, 37%, 1);
+  background-color: color.$green-light;
+  transition: background-color 0.5s ease-in;
 
   &:hover {
-    background-color: rgb(2, 150, 101);
+    background-color: color.$green-light-2;
   }
 }
 </style>

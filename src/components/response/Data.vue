@@ -43,6 +43,8 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@use "../../assets/variables" as color;
+
 @import "sierra-library/lib/index";
 
 .container-data {
@@ -71,7 +73,7 @@ export default defineComponent({
 
   .json-data {
     z-index: -1;
-    background-color: #18232f;
+    background-color: color.$dark-blue-2;
     height: auto;
 
     pre {

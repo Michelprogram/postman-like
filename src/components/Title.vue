@@ -14,6 +14,8 @@ export default defineComponent({
 </template>
 
 <style scoped lang="scss">
+@use "../assets/variables" as color;
+
 @import "sierra-library/lib/index";
 
 .greetings {
@@ -24,7 +26,7 @@ export default defineComponent({
     font-weight: 500;
     font-size: 2.6rem;
     text-decoration: none;
-    color: hsla(160, 100%, 37%, 1);
+    color: color.$green-light;
   }
 
   h3 {

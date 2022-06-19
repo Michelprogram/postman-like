@@ -33,6 +33,8 @@ export default defineComponent({
 </template>
 
 <style lang="scss">
+@use "./assets/variables" as color;
+
 @import "./assets/base.css";
 
 .container-app {
@@ -51,7 +53,7 @@ export default defineComponent({
     height: 95%;
     max-height: 95%;
     min-height: 95%;
-    border: 2px solid red;
+    //border: 2px solid red;
     display: flex;
     flex-direction: column;
     margin-top: 5%;
@@ -60,7 +62,7 @@ export default defineComponent({
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: color.$dark-blue;
   }
 }
 
