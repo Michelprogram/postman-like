@@ -48,7 +48,7 @@ export default defineComponent({
     transition: background-color 0.5s ease-in;
 
     &--dark:hover {
-      background-color: color.$gray;
+      background-color: color.$dark-blue-2;
     }
 
     &--success {

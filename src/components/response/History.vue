@@ -95,8 +95,8 @@ $red: rgb(111, 61, 61);
   }
 
   .table {
-    border-spacing: 10px;
-
+    border-spacing: 0px 10px;
+    border-collapse: separate;
     td,
     th {
       padding: 20px;

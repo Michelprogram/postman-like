@@ -53,6 +53,9 @@ export default defineComponent({
     height: 95%;
     max-height: 95%;
     min-height: 95%;
+    max-width: 100%;
+    min-width: 100%;
+
     //border: 2px solid red;
     display: flex;
     flex-direction: column;
