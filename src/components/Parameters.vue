@@ -8,6 +8,8 @@ import { defineComponent } from "@vue/runtime-core";
 import TabsWrapperVue from "@/components/TabsWrapper.vue";
 import Header from "@/components/parameters/Headers.vue";
 import Authorizathion from "@/components/parameters/Authorizations.vue";
+import Body from "@/components/parameters/Body.vue";
+import Query from "@/components/parameters/Query.vue";
 import type ITab from "@/interfaces/tab";
 export default defineComponent({
   name: "parameters-component",
@@ -19,6 +21,8 @@ export default defineComponent({
       tabs: [
         { title: "Headers", component: Header },
         { title: "Authorization", component: Authorizathion },
+        { title: "Query", component: Query },
+        { title: "Body", component: Body },
       ] as ITab[],
     };
   },

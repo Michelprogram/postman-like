@@ -170,15 +170,6 @@ const getters = {
   all: (state: any): Array<IHistory> => {
     return state.histories;
   },
-  reversed: (state: any): Array<IHistory> => {
-    const res: Array<IHistory> = [];
-    const start = state.histories;
-    for (let index = start.length; index > 0; index--) {
-      const element = start[index - 1];
-      res.push(element);
-    }
-    return res;
-  },
   byId:
     (state: any) =>
     (id: number): IHistory => {

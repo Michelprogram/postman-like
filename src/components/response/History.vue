@@ -60,9 +60,9 @@ export default defineComponent({
   },
   computed: {
     histories(): Array<IHistory> {
-      let res = [];
-      const start = this.$store.getters["history/reversed"] as Array<IHistory>;
-      for (let index = start.length; index > 0; index--) {
+      const res: Array<IHistory> = [];
+      const start: Array<IHistory> = this.$store.getters["history/all"];
+      for (let index = start.length - 1; index > 0; index--) {
         const element = start[index];
         res.push(element);
       }
