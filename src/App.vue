@@ -56,7 +56,7 @@ export default defineComponent({
     max-width: 100%;
     min-width: 100%;
 
-    //border: 2px solid red;
+    border: 2px solid pink;
     display: flex;
     flex-direction: column;
     margin-top: 5%;
