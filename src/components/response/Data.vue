@@ -5,9 +5,7 @@
       <Copy class="copy-content" @click="copy()" />
     </div>
     <div class="json-data">
-      <pre :class="classCopied">{{
-        this.$store.getters["response/response"]
-      }}</pre>
+      <pre :class="classCopied">{{ this.$store.getters.response }}</pre>
     </div>
   </div>
 </template>
@@ -33,7 +31,8 @@ export default defineComponent({
   },
   computed: {
     displayTime(): string {
-      const time: string = this.$store.getters["timer/timer"];
+      const time: string = this.$store.getters.timer;
+      console.log("ttt", time);
       return time == "" || time == "0.00" ? "" : time;
     },
     classCopied(): string {

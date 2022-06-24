@@ -2,25 +2,31 @@
   <div class="container-parameters">
     <div>
       <p @click="addQuery()">Plus</p>
-      <p>Moins</p>
     </div>
-    <QueryRow v-for="index in params" :key="index" :index="index" />
+    <QueryRow
+      v-for="(param, index) in getAll"
+      :key="param.id"
+      :index="index"
+      :parameter="param.key"
+      :value="param.value"
+    />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import QueryRow from "@/components/parameters/QueryRow.vue";
+import { ParameterMutation } from "@/store/modules/param/types";
 export default defineComponent({
   name: "query-component",
-  data() {
-    return {
-      params: 1,
-    };
-  },
   methods: {
     addQuery(): void {
-      this.$store.commit("params/addQuery");
-      this.params++;
+      this.$store.commit(ParameterMutation.ADD);
+    },
+  },
+  computed: {
+    getAll(): any {
+      this.$store.state;
+      return this.$store.getters.params;
     },
   },
   components: {

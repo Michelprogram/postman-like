@@ -14,12 +14,13 @@
   </div>
 </template>
 <script lang="ts">
+import { StatsMutation } from "@/store/modules/stats/types";
 import { defineComponent } from "@vue/runtime-core";
 export default defineComponent({
   name: "methods-component",
   data() {
     return {
-      methods_select: this.$store.getters["method/method"],
+      methods_select: this.$store.getters.method,
     };
   },
   methods: {
@@ -30,7 +31,7 @@ export default defineComponent({
     },
     setMethods(methods: string): void {
       this.methods_select = methods;
-      this.$store.commit("method/method", { method: methods });
+      this.$store.commit(StatsMutation.METHOD, methods);
     },
   },
 });

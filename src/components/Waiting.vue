@@ -18,6 +18,7 @@
   </div>
 </template>
 <script lang="ts">
+import { StatsMutation } from "@/store/modules/stats/types";
 import { defineComponent } from "@vue/runtime-core";
 export default defineComponent({
   data() {
@@ -38,7 +39,7 @@ export default defineComponent({
     },
   },
   beforeUnmount() {
-    this.$store.commit("timer/timer", { time: this.setTimer });
+    this.$store.commit(StatsMutation.TIMER, this.setTimer);
   },
   name: "waiting-component",
 });

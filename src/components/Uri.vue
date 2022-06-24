@@ -21,6 +21,8 @@
 
 <script lang="ts">
 import type IHistory from "@/interfaces/history";
+import { HistoryMutation } from "@/store/modules/history/types";
+import { StatsMutation } from "@/store/modules/stats/types";
 import { defineComponent } from "@vue/runtime-core";
 import WaitingVue from "./Waiting.vue";
 
@@ -32,7 +34,7 @@ export default defineComponent({
       animate: false,
       timer: 0,
       controller: {} as AbortController,
-      method: this.$store.getters["method/method"],
+      method: this.$store.getters.method,
     };
   },
   methods: {
@@ -55,9 +57,10 @@ export default defineComponent({
       })
         .then((response) => {
           response.json().then((c: any) => {
-            this.$store.commit("response/response", {
-              data: JSON.stringify(c, undefined, 2),
-            });
+            this.$store.commit(
+              StatsMutation.RESPONSE,
+              JSON.stringify(c, undefined, 2)
+            );
           });
         })
         .catch((r) => {
@@ -72,7 +75,7 @@ export default defineComponent({
             request: this.uri,
             method: this.method,
           };
-          this.$store.commit("history/add", {
+          this.$store.commit(HistoryMutation.ADD, {
             history: history,
           });
         });

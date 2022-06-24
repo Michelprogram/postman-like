@@ -38,6 +38,8 @@ import type IHistory from "@/interfaces/history";
 import { defineComponent } from "@vue/runtime-core";
 import Trash from "@/components/icons/Trash.vue";
 import Export from "@/components/icons/Export.vue";
+import { HistoryMutation } from "@/store/modules/history/types";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "history-component",
@@ -55,13 +57,15 @@ export default defineComponent({
       return "code-error-server";
     },
     removeAll(): void {
-      this.$store.commit("history/delAll");
+      this.$store.commit(HistoryMutation.DELETE);
     },
   },
   computed: {
     histories(): Array<IHistory> {
       const res: Array<IHistory> = [];
-      const start: Array<IHistory> = this.$store.getters["history/all"];
+      const history = this.$store.getters.getHistories;
+      console.log(this.$store.getters);
+      const start: Array<IHistory> = history;
       for (let index = start.length - 1; index > 0; index--) {
         const element = start[index];
         res.push(element);

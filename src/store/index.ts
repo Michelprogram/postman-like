@@ -1,16 +1,18 @@
-import response from "./modules/response";
-import method from "./modules/method";
-import timer from "./modules/timer";
-import history from "./modules/history";
-import params from "./modules/params";
-import { createStore } from "vuex";
+import { parameters } from "./modules/param/index";
+import { history } from "./modules/history";
+import { stats } from "./modules/stats";
+import type RootState from "./types";
+import Vuex, { type StoreOptions } from "vuex";
 
-export default createStore({
-  modules: {
-    response,
-    method,
-    timer,
-    history,
-    params,
+const store: StoreOptions<RootState> = {
+  state: {
+    version: "1.0.0",
   },
-});
+  modules: {
+    parameters,
+    history,
+    stats,
+  },
+};
+
+export default new Vuex.Store<RootState>(store);
