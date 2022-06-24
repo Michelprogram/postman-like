@@ -58,7 +58,7 @@ export default defineComponent({
         .then((response) => {
           response.json().then((c: any) => {
             this.$store.commit(
-              StatsMutation.RESPONSE,
+              StatsMutation.RESPONSE_STATS,
               JSON.stringify(c, undefined, 2)
             );
           });
@@ -75,7 +75,7 @@ export default defineComponent({
             request: this.uri,
             method: this.method,
           };
-          this.$store.commit(HistoryMutation.ADD, {
+          this.$store.commit(HistoryMutation.ADD_HISTORY, {
             history: history,
           });
         });

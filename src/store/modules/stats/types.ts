@@ -11,9 +11,9 @@ export const state: StatsState = {
 };
 
 export enum StatsMutation {
-  METHOD = "METHOD",
-  RESPONSE = "RESPONSE",
-  TIMER = "TIMER",
+  METHOD_STATS = "METHOD_STATS",
+  RESPONSE_STATS = "RESPONSE_STATS",
+  TIMER_STATS = "TIMER_STATS",
 }
 
 export interface Getters {
@@ -23,7 +23,7 @@ export interface Getters {
 }
 
 export interface Mutations {
-  [StatsMutation.METHOD](state: StatsState, payload: string): void;
-  [StatsMutation.RESPONSE](state: StatsState, payload: string): void;
-  [StatsMutation.TIMER](state: StatsState, payload: string): void;
+  [StatsMutation.METHOD_STATS](state: StatsState, payload: string): void;
+  [StatsMutation.RESPONSE_STATS](state: StatsState, payload: string): void;
+  [StatsMutation.TIMER_STATS](state: StatsState, payload: string): void;
 }

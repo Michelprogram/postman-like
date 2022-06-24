@@ -8,7 +8,7 @@ import TabsWrapperVue from "./TabsWrapper.vue";
 import Data from "./response/Data.vue";
 import HistoryVue from "./response/History.vue";
 
-import type ITab from "@/interfaces/tab";
+import type { ITab } from "@/interfaces/tab";
 
 export default defineComponent({
   name: "response-component",
@@ -20,7 +20,7 @@ export default defineComponent({
       tabs: [
         { title: "Réponse", component: Data },
         { title: "History", component: HistoryVue },
-      ],
+      ] as ITab[],
     };
   },
 });

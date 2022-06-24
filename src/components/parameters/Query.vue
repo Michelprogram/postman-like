@@ -4,7 +4,7 @@
       <p @click="addQuery()">Plus</p>
     </div>
     <QueryRow
-      v-for="(param, index) in getAll"
+      v-for="(param, index) in all"
       :key="param.id"
       :index="index"
       :parameter="param.key"
@@ -15,18 +15,17 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import QueryRow from "@/components/parameters/QueryRow.vue";
-import { ParameterMutation } from "@/store/modules/param/types";
+import { ParameterMutation, type Param } from "@/store/modules/param/types";
 export default defineComponent({
   name: "query-component",
   methods: {
     addQuery(): void {
-      this.$store.commit(ParameterMutation.ADD);
+      this.$store.commit(ParameterMutation.ADD_PARAMETER);
     },
   },
   computed: {
-    getAll(): any {
-      this.$store.state;
-      return this.$store.getters.params;
+    all(): Param[] {
+      return this.$store.getters.getParamerers;
     },
   },
   components: {

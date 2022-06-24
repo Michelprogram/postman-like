@@ -1,7 +1,7 @@
 <template>
   <div class="container-history">
     <div class="options">
-      <Trash @click="removeAll()" />
+      <Trash @click="remove()" />
       <Export />
     </div>
     <table class="table">
@@ -39,7 +39,6 @@ import { defineComponent } from "@vue/runtime-core";
 import Trash from "@/components/icons/Trash.vue";
 import Export from "@/components/icons/Export.vue";
 import { HistoryMutation } from "@/store/modules/history/types";
-import { useStore } from "vuex";
 
 export default defineComponent({
   name: "history-component",
@@ -56,21 +55,13 @@ export default defineComponent({
       if (code >= 400 && code <= 499) return "code-error-client";
       return "code-error-server";
     },
-    removeAll(): void {
-      this.$store.commit(HistoryMutation.DELETE);
+    remove(): void {
+      this.$store.commit(HistoryMutation.DELETE_HISTORY);
     },
   },
   computed: {
     histories(): Array<IHistory> {
-      const res: Array<IHistory> = [];
-      const history = this.$store.getters.getHistories;
-      console.log(this.$store.getters);
-      const start: Array<IHistory> = history;
-      for (let index = start.length - 1; index > 0; index--) {
-        const element = start[index];
-        res.push(element);
-      }
-      return res;
+      return this.$store.getters.getReversed;
     },
   },
 });

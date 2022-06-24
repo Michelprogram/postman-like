@@ -39,7 +39,7 @@ export default defineComponent({
     },
   },
   beforeUnmount() {
-    this.$store.commit(StatsMutation.TIMER, this.setTimer);
+    this.$store.commit(StatsMutation.TIMER_STATS, this.setTimer);
   },
   name: "waiting-component",
 });

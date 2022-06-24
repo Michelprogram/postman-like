@@ -22,7 +22,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import type ITab from "@/interfaces/tab";
+import type { ITab } from "@/interfaces/tab";
 export default defineComponent({
   name: "tabs-wrapper",
   props: {

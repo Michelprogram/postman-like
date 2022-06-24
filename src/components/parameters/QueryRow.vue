@@ -39,19 +39,19 @@ export default defineComponent({
   },
   methods: {
     updateValue(e: any) {
-      this.$store.commit(ParameterMutation.UPDATE_VALUE, {
+      this.$store.commit(ParameterMutation.UPDATE_VALUE_PARAMETER, {
         index: this.index,
         value: e.target.value,
       });
     },
     updateKey(e: any) {
-      this.$store.commit(ParameterMutation.UPDATE_KEY, {
+      this.$store.commit(ParameterMutation.UPDATE_KEY_PARAMETER, {
         index: this.index,
         key: e.target.value,
       });
     },
     deleteParams(): void {
-      this.$store.commit(ParameterMutation.DELETE, this.index);
+      this.$store.commit(ParameterMutation.DELETE_PARAMETER, this.index);
     },
   },
   components: { Trash },

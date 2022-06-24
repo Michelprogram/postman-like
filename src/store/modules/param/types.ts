@@ -19,10 +19,10 @@ export const state: ParameterState = {
 };
 
 export enum ParameterMutation {
-  UPDATE_VALUE = "UPDATE_VALUE",
-  UPDATE_KEY = "UPDATE_KEY",
-  ADD = "ADD",
-  DELETE = "DELETE",
+  UPDATE_VALUE_PARAMETER = "UPDATE_VALUE_PARAMETER",
+  UPDATE_KEY_PARAMETER = "UPDATE_KEY_PARAMETER",
+  ADD_PARAMETER = "ADD_PARAMETER",
+  DELETE_PARAMETER = "DELETE_PARAMETER",
 }
 
 export interface Getters {
@@ -31,11 +31,14 @@ export interface Getters {
 }
 
 export interface Mutations {
-  [ParameterMutation.UPDATE_VALUE](
+  [ParameterMutation.UPDATE_VALUE_PARAMETER](
     state: ParameterState,
     options: Options
   ): void;
-  [ParameterMutation.UPDATE_KEY](state: ParameterState, options: Options): void;
-  [ParameterMutation.ADD](state: ParameterState): void;
-  [ParameterMutation.DELETE](state: ParameterState, options: Options): void;
+  [ParameterMutation.UPDATE_KEY_PARAMETER](
+    state: ParameterState,
+    options: Options
+  ): void;
+  [ParameterMutation.ADD_PARAMETER](state: ParameterState): void;
+  [ParameterMutation.DELETE_PARAMETER](state: ParameterState, id: number): void;
 }

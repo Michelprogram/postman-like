@@ -1,6 +1,6 @@
 import type { DefineComponent } from "vue";
 
-export default interface ITab {
+export type ITab = {
   title: string;
   component: DefineComponent;
-}
+};

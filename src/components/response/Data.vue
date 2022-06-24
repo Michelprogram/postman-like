@@ -1,11 +1,11 @@
 <template>
   <div class="container-data">
     <div class="informations">
-      <p>Time {{ displayTime }}</p>
+      <p>Time {{ time }}</p>
       <Copy class="copy-content" @click="copy()" />
     </div>
     <div class="json-data">
-      <pre :class="classCopied">{{ this.$store.getters.response }}</pre>
+      <pre :class="classCopied">{{ response }}</pre>
     </div>
   </div>
 </template>
@@ -25,15 +25,16 @@ export default defineComponent({
   methods: {
     copy() {
       this.copied = true;
-      navigator.clipboard.writeText(this.$store.getters["response/response"]);
+      navigator.clipboard.writeText(this.response);
       setTimeout(() => (this.copied = false), 500);
     },
   },
   computed: {
-    displayTime(): string {
-      const time: string = this.$store.getters.timer;
-      console.log("ttt", time);
-      return time == "" || time == "0.00" ? "" : time;
+    time(): string {
+      return this.$store.getters.getTimer;
+    },
+    response(): string {
+      return this.$store.getters.getResponse;
     },
     classCopied(): string {
       return this.copied ? "copied" : "";

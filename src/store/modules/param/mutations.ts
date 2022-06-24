@@ -5,15 +5,18 @@ import { ParameterMutation } from "./types";
 let id = 0;
 
 export const mutations: MutationTree<ParameterState> & Mutations = {
-  [ParameterMutation.UPDATE_VALUE]: (state, payload: Options): void => {
+  [ParameterMutation.UPDATE_VALUE_PARAMETER]: (
+    state,
+    payload: Options
+  ): void => {
     const value: string = payload.value!;
     state.queries[payload.index].value = value;
   },
-  [ParameterMutation.UPDATE_KEY]: (state, payload: Options): void => {
+  [ParameterMutation.UPDATE_KEY_PARAMETER]: (state, payload: Options): void => {
     const key: string = payload.key!;
     state.queries[payload.index].key = key;
   },
-  [ParameterMutation.ADD]: (state): void => {
+  [ParameterMutation.ADD_PARAMETER]: (state): void => {
     const emptyParam: Param = {
       id: id++,
       key: "",
@@ -21,7 +24,7 @@ export const mutations: MutationTree<ParameterState> & Mutations = {
     };
     state.queries.push(emptyParam);
   },
-  [ParameterMutation.DELETE]: (state, payload: Options): void => {
-    state.queries.splice(payload.index, 1);
+  [ParameterMutation.DELETE_PARAMETER]: (state, id: number): void => {
+    state.queries.splice(id, 1);
   },
 };
