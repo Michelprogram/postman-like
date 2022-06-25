@@ -7,6 +7,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <h1 class="text-3xl font-bold underline">Hello world!</h1>
   <div class="greetings">
     <h1 class="green">21 Api client</h1>
     <h3>Start your request right now.</h3>
@@ -15,8 +16,6 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @use "../assets/variables" as color;
-
-@import "sierra-library/lib/index";
 
 .greetings {
   text-align: center;

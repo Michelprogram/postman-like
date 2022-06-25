@@ -44,7 +44,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-@import "sierra-library/lib/index";
 .tabs {
   height: 8%;
   .tabs-item {

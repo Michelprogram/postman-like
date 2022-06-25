@@ -38,8 +38,6 @@ export default defineComponent({
 <style lang="scss">
 @use "../assets/variables" as color;
 
-@import "sierra-library/lib/index";
-
 .methods {
   display: flex;
   justify-content: space-between;

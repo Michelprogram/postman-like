@@ -68,7 +68,6 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 @use "../../assets/variables" as color;
-@import "sierra-library/lib/index";
 
 $green: rgb(102, 199, 115);
 $red: rgb(111, 61, 61);

@@ -6,7 +6,18 @@ export const getters: GetterTree<ParameterState, RootState> & Getters = {
   getParameterById: (state, index: number): Param => {
     return state.queries[index];
   },
-  getParamerers: (state): Param[] => {
+  getParameters: (state): Param[] => {
     return state.queries;
+  },
+  getParametersString: (state): string => {
+    let res = "";
+    for (let index = 0; index < state.queries.length; index++) {
+      const element: Param = state.queries[index];
+      res +=
+        index == 0
+          ? `?${element.key}=${element.value}`
+          : `&${element.key}=${element.value}`;
+    }
+    return res;
   },
 };

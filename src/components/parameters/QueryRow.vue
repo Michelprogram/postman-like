@@ -58,8 +58,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-@import "sierra-library/lib/index";
-
 .container-query-row {
   display: flex;
   justify-content: space-around;

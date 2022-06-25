@@ -2,7 +2,7 @@
   <div>
     <div class="formCollapsed">
       <div class="input formCollapsed-item formCollapsed-itemPrimary">
-        <input v-model="uri" id="test7" placeholder="url" type="text" />
+        <input v-model="uri" placeholder="your url" type="text" />
       </div>
 
       <button
@@ -30,11 +30,10 @@ export default defineComponent({
   name: "URI",
   data() {
     return {
-      uri: "https://jsonplaceholder.typicode.com/todos/1",
+      uri: "",
       animate: false,
       timer: 0,
       controller: {} as AbortController,
-      method: this.$store.getters.method,
     };
   },
   methods: {
@@ -51,7 +50,7 @@ export default defineComponent({
         mode: "cors",
         cache: "default",
       };
-      fetch(this.uri, {
+      fetch(this.fullUri, {
         method: this.method,
         signal: signal,
       })
@@ -87,13 +86,20 @@ export default defineComponent({
       this.controller.abort();
     },
   },
+  computed: {
+    fullUri(): string {
+      return this.uri + this.$store.getters.getParametersString;
+    },
+    method(): string {
+      return this.$store.getters.getMethod;
+    },
+  },
   components: { WaitingVue },
 });
 </script>
 <style lang="scss" scoped>
 @use "../assets/variables" as color;
 
-@import "sierra-library/lib/index";
 .button {
   background-color: color.$green-light;
   transition: background-color 0.5s ease-in;

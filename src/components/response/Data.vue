@@ -3,6 +3,7 @@
     <div class="informations">
       <p>Time {{ time }}</p>
       <Copy class="copy-content" @click="copy()" />
+      <a :href="'data:' + exportJson" download="data.json"><Export /></a>
     </div>
     <div class="json-data">
       <pre :class="classCopied">{{ response }}</pre>
@@ -12,10 +13,12 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import Copy from "@/components/icons/Copy.vue";
+import Export from "../icons/Export.vue";
 export default defineComponent({
   name: "data-component",
   components: {
     Copy,
+    Export,
   },
   data() {
     return {
@@ -39,13 +42,15 @@ export default defineComponent({
     classCopied(): string {
       return this.copied ? "copied" : "";
     },
+    exportJson(): string {
+      const data = this.$store.getters.getResponse;
+      return "text/json;charset=utf-8," + encodeURIComponent(data);
+    },
   },
 });
 </script>
 <style lang="scss" scoped>
 @use "../../assets/variables" as color;
-
-@import "sierra-library/lib/index";
 
 .container-data {
   display: flex;
@@ -68,6 +73,12 @@ export default defineComponent({
       width: 30px;
       cursor: pointer;
       z-index: 0;
+    }
+
+    a {
+      svg {
+        width: 30px;
+      }
     }
   }
 

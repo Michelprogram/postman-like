@@ -7,6 +7,4 @@ export default defineComponent({
   name: "authorization-component",
 });
 </script>
-<style lang="scss">
-@import "sierra-library/lib/index";
-</style>
+<style lang="scss"></style>

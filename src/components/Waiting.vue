@@ -45,8 +45,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-@import "sierra-library/lib/index";
-
 .container-spinner {
   position: absolute;
   display: flex;

@@ -27,7 +27,8 @@ export enum ParameterMutation {
 
 export interface Getters {
   getParameterById(state: ParameterState, id: number): Param;
-  getParamerers(state: ParameterState): Param[];
+  getParameters(state: ParameterState): Param[];
+  getParametersString(state: ParameterState): string;
 }
 
 export interface Mutations {

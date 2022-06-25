@@ -26,8 +26,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@import "sierra-library/lib/index";
-
 .container-response {
   height: 100%;
   display: flex;
