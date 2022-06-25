@@ -1,16 +1,27 @@
 <template>
   <div>
-    <div class="formCollapsed">
-      <div class="input formCollapsed-item formCollapsed-itemPrimary">
-        <input v-model="uri" placeholder="your url" type="text" />
+    <div class="mt-5 mb-5">
+      <div class="relative">
+        <div
+          class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+        >
+          <font-awesome-icon icon="fa-solid fa-globe" />
+        </div>
+        <input
+          type="search"
+          id="search"
+          class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none"
+          placeholder="Your URI"
+          required
+        />
+        <button
+          type="submit"
+          class="text-white absolute right-2.5 bottom-2.5 bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700"
+          @click="sendRequest()"
+        >
+          Send
+        </button>
       </div>
-
-      <button
-        class="formCollapsed-item button button-primary"
-        @click="sendRequest()"
-      >
-        Send
-      </button>
     </div>
 
     <div v-if="animate">
@@ -100,12 +111,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 @use "../assets/variables" as color;
 
-.button {
+button {
   background-color: color.$green-light;
   transition: background-color 0.5s ease-in;
-
-  &:hover {
-    background-color: color.$green-light-2;
-  }
 }
 </style>

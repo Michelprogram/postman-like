@@ -17,10 +17,14 @@ export default defineComponent({
   data() {
     return {
       tabs: [
-        { title: "Headers", component: Header },
-        { title: "Authorization", component: Authorizathion },
-        { title: "Query", component: Queries },
-        { title: "Body", component: Body },
+        { title: "Headers", component: Header, icons: "fa-book-open" },
+        {
+          title: "Authorization",
+          component: Authorizathion,
+          icons: "fa-address-card",
+        },
+        { title: "Query", component: Queries, icons: "fa-gear" },
+        { title: "Body", component: Body, icons: "fa-sitemap" },
       ] as ITab[],
     };
   },

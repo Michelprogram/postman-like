@@ -29,8 +29,8 @@ export default defineComponent({
   methods: {
     isSelected(methods: string): string {
       return methods == this.method
-        ? "badge badge--success"
-        : "badge badge--dark";
+        ? "badge rounded-t-lg badge--success"
+        : "badge rounded-t-lg badge--dark";
     },
   },
 });
@@ -42,6 +42,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   .badge {
+    padding: 20px;
     cursor: pointer;
     transition: background-color 0.5s ease-in;
 
@@ -50,6 +51,7 @@ export default defineComponent({
     }
 
     &--success {
+      color: white;
       background-color: color.$green-light;
     }
   }

@@ -18,8 +18,8 @@ export default defineComponent({
   data() {
     return {
       tabs: [
-        { title: "Réponse", component: Data },
-        { title: "History", component: HistoryVue },
+        { title: "Response", component: Data, icons: "fa-reply" },
+        { title: "History", component: HistoryVue, icons: "fa-timeline" },
       ] as ITab[],
     };
   },
