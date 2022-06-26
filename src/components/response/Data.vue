@@ -2,8 +2,14 @@
   <div class="container-data">
     <div class="informations">
       <p>Time {{ time }}</p>
-      <Copy class="copy-content" @click="copy()" />
-      <a :href="'data:' + exportJson" download="data.json"><Export /></a>
+      <font-awesome-icon
+        class="copy-content"
+        icon="fa-solid fa-copy"
+        @click="copy()"
+      />
+      <a :href="'data:' + exportJson" download="data.json">
+        <font-awesome-icon icon="fa-solid fa-file-export" />
+      </a>
     </div>
     <div class="json-data">
       <pre :class="classCopied">{{ response }}</pre>
@@ -12,14 +18,8 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import Copy from "@/components/icons/Copy.vue";
-import Export from "../icons/Export.vue";
 export default defineComponent({
   name: "data-component",
-  components: {
-    Copy,
-    Export,
-  },
   data() {
     return {
       copied: false,

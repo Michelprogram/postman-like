@@ -15,33 +15,55 @@
               :icon="'fa-solid ' + tab.icons"
               :class="isSelectedClassSvg(index)"
             />
-            {{ tab.title }}
+            {{ tab.type }}
           </a>
         </li>
       </ul>
     </div>
 
     <keep-alive>
-      <component
+      <TabsContent
         v-for="(tab, index) in tabs"
         :key="index"
+        :type="tab.type"
+        :description="tab.descritpion"
         v-show="isSelected(index)"
-        :is="tab.component"
-      ></component>
+      />
     </keep-alive>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import type { ITab } from "@/interfaces/tab";
+import type { TabParameter as Tab } from "@/types/index";
+import TabsContent from "@/components/parameters/TabsContent.vue";
 export default defineComponent({
-  name: "tabs-wrapper",
-  props: {
-    tabs: Object as () => Array<ITab>,
+  name: "tabs-parameters",
+  components: {
+    TabsContent,
   },
   data() {
     return {
       currentTabIndex: 0,
+      tabs: [
+        {
+          type: "Headers",
+          descritpion:
+            "Let the client and the server pass additional information.",
+          icons: "fa-book-open",
+        },
+        {
+          type: "Authorization",
+          descritpion:
+            "HTTP provides a general framework for access control and authentication",
+          icons: "fa-address-card",
+        },
+        {
+          type: "Query",
+          descritpion:
+            "Is a part of a URL that assigns values to specified parameters",
+          icons: "fa-gear",
+        },
+      ] as Tab[],
     };
   },
   methods: {
@@ -74,7 +96,8 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@use "../assets/variables" as color;
+@use "@/assets/variables/index.scss" as color;
+
 .selected-color {
   color: color.$green-light;
   border-color: color.$green-light;

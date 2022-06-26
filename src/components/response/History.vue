@@ -1,8 +1,8 @@
 <template>
   <div class="container-history">
     <div class="options">
-      <Trash @click="remove()" />
-      <Export />
+      <font-awesome-icon icon="fa-solid fa-trash" @click="remove()" />
+      <font-awesome-icon icon="fa-solid fa-export" />
     </div>
     <table class="table">
       <thead>
@@ -36,16 +36,10 @@
 <script lang="ts">
 import type IHistory from "@/interfaces/history";
 import { defineComponent } from "@vue/runtime-core";
-import Trash from "@/components/icons/Trash.vue";
-import Export from "@/components/icons/Export.vue";
 import { HistoryMutation } from "@/store/modules/history/types";
 
 export default defineComponent({
   name: "history-component",
-  components: {
-    Trash,
-    Export,
-  },
   methods: {
     httpCode(history: IHistory): string {
       const code: number = history.httpCode;

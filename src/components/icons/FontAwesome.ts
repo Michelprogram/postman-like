@@ -14,6 +14,10 @@ import {
   faReply,
   faTimeline,
   faGlobe,
+  faTrash,
+  faPlus,
+  faFileExport,
+  faCopy,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
@@ -25,7 +29,11 @@ library.add(
   faSitemap,
   faReply,
   faTimeline,
-  faGlobe
+  faGlobe,
+  faTrash,
+  faPlus,
+  faFileExport,
+  faCopy
 );
 
 export default FontAwesomeIcon;
