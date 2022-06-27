@@ -37,4 +37,18 @@ export const getters: GetterTree<ParameterState, RootState> & Getters = {
           return [];
       }
     },
+  getSizeByType:
+    (state) =>
+    (type): number => {
+      switch (type) {
+        case "Headers":
+          return state.headers.length;
+        case "Authorization":
+          return state.authorization.length;
+        case "Query":
+          return state.queries.length;
+        default:
+          return 0;
+      }
+    },
 };

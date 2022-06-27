@@ -1,17 +1,23 @@
 <template>
-  <div class="container-data">
-    <div class="informations">
-      <p>Time {{ time }}</p>
+  <div class="container-data flex flex-col position-relative">
+    <div class="informations flex justify-between items-center">
+      <p>Time {{ time }}s</p>
       <font-awesome-icon
-        class="copy-content"
+        class="cursor-pointer"
         icon="fa-solid fa-copy"
         @click="copy()"
       />
-      <a :href="'data:' + exportJson" download="data.json">
+      <a
+        :href="'data:' + exportJson"
+        download="data.json"
+        class="hover:bg-transparent"
+      >
         <font-awesome-icon icon="fa-solid fa-file-export" />
       </a>
     </div>
-    <div class="json-data">
+    <div
+      class="dark:border-gray-600 dark:placeholder-gray-400 dark:text-white bg-gray-50 dark:bg-gray-800 block rounded-sm"
+    >
       <pre :class="classCopied">{{ response }}</pre>
     </div>
   </div>
@@ -40,7 +46,7 @@ export default defineComponent({
       return this.$store.getters.getResponse;
     },
     classCopied(): string {
-      return this.copied ? "copied" : "";
+      return this.copied ? "copied pre-content" : "pre-content";
     },
     exportJson(): string {
       const data = this.$store.getters.getResponse;
@@ -53,54 +59,21 @@ export default defineComponent({
 @use "../../assets/variables" as color;
 
 .container-data {
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
   height: 100%;
-  position: relative;
 
   .informations {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     height: 100px;
     text-align: center;
-
-    p {
-      margin: 0;
-    }
-    .copy-content {
-      width: 30px;
-      cursor: pointer;
-      z-index: 0;
-    }
-
-    a {
-      svg {
-        width: 30px;
-      }
-    }
   }
 
-  .json-data {
-    z-index: -1;
-    background-color: color.$dark-blue-2;
-    height: auto;
+  .pre-content {
+    border-radius: 3px;
+    transition: filter 0.5s ease-in;
+    white-space: pre-wrap;
+  }
 
-    pre {
-      display: block;
-      color: white;
-      height: 100%;
-      max-width: 500px;
-      min-width: 100%;
-      border-radius: 3px;
-      transition: filter 0.5s ease-in;
-      white-space: pre-wrap;
-    }
-
-    .copied {
-      filter: blur(2px);
-    }
+  .copied {
+    filter: blur(2px);
   }
 }
 </style>

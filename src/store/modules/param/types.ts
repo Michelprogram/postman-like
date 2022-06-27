@@ -17,7 +17,7 @@ export type TypeTabs =
   | "Authorization"
   | "Query"
   | "Body"
-  | "Respone"
+  | "Response"
   | "History";
 
 export type ParameterState = {
@@ -60,6 +60,7 @@ export interface Getters {
   getParametersString(state: ParameterState): string;
   getHeaders(state: ParameterState): Param[];
   getByType(state: ParameterState): (type: TypeTabs) => Param[];
+  getSizeByType(state: ParameterState): (type: TypeTabs) => number;
 }
 
 export interface Mutations {

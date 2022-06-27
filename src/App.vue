@@ -3,7 +3,7 @@ import { defineComponent } from "@vue/runtime-core";
 import Title from "@/components/Title.vue";
 import Uri from "@/components/Uri.vue";
 import Methods from "@/components/Methods.vue";
-import ResponseVue from "@/components/Response.vue";
+import ResponseVue from "@/components/response/Response.vue";
 import TabsParameter from "@/components/parameters/TabsParameter.vue";
 
 export default defineComponent({
@@ -48,8 +48,8 @@ export default defineComponent({
   margin-left: 10%;
   height: 100vh;
 
-  .left-part {
-    //outline: solid red;
+  .right-part {
+    overflow: scroll;
   }
 
   .left-part,

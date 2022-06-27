@@ -13,6 +13,7 @@
           class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none"
           placeholder="Your URI"
           required
+          v-model="uri"
         />
         <button
           type="submit"
@@ -41,7 +42,7 @@ export default defineComponent({
   name: "URI",
   data() {
     return {
-      uri: "",
+      uri: "https://jsonplaceholder.typicode.com/posts/1",
       animate: false,
       timer: 0,
       controller: {} as AbortController,
@@ -99,6 +100,7 @@ export default defineComponent({
   },
   computed: {
     fullUri(): string {
+      console.log(this.uri);
       return this.uri + this.$store.getters.getParametersString;
     },
     method(): string {
