@@ -1,0 +1,28 @@
+@mixin slide($orientation) {
+  &-enter- {
+    &from {
+      opacity: 0;
+      @if $orientation == "Left" {
+        transform: translateX(100px);
+      } @else {
+        transform: translateX(-100px);
+      }
+    }
+    &active {
+      transition: all 0.3s ease-out;
+    }
+  }
+  &-leave- {
+    &to {
+      opacity: 0;
+      @if $orientation == "Left" {
+        transform: translateX(-100px);
+      } @else {
+        transform: translateX(100px);
+      }
+    }
+    &active {
+      transition: all 0.3s ease-in;
+    }
+  }
+}

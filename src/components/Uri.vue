@@ -86,9 +86,7 @@ export default defineComponent({
             request: this.uri,
             method: this.method,
           };
-          this.$store.commit(HistoryMutation.ADD_HISTORY, {
-            history: history,
-          });
+          this.$store.commit(HistoryMutation.ADD_HISTORY, history);
         });
     },
     triggerAnimate() {

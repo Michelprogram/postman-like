@@ -18,6 +18,7 @@ import {
   faPlus,
   faFileExport,
   faCopy,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
@@ -33,7 +34,8 @@ library.add(
   faTrash,
   faPlus,
   faFileExport,
-  faCopy
+  faCopy,
+  faArrowRight
 );
 
 export default FontAwesomeIcon;

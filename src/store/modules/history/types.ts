@@ -8,10 +8,10 @@ export type Mutations<S = HistoryState> = {
   [HistoryMutation.DELETE_HISTORY](state: S): void;
 };
 
-export type Getters = {
-  getHistories(state: HistoryState): History[];
-  getHistoryById(state: HistoryState, id: number): History | undefined;
-  getReversed(state: HistoryState): History[];
+export type Getters<S = HistoryState> = {
+  getHistories(state: S): History[];
+  getHistoryById(state: S, id: number): History | undefined;
+  getReversed(state: S): History[];
 };
 
 export type History = {
@@ -28,5 +28,14 @@ export type HistoryState = {
 };
 
 export const state: HistoryState = {
-  histories: [],
+  histories: [
+    {
+      id: 0,
+      time: "0",
+      httpCode: 200,
+      data: "string",
+      request: "https://jsonplaceholder.typicode.com/posts/1",
+      method: "GET",
+    },
+  ],
 };

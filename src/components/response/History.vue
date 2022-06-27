@@ -1,45 +1,63 @@
 <template>
-  <div class="container-history">
-    <div class="options">
+  <div class="flex flex-col justify-around">
+    <div class="w-full flex justify-around">
       <font-awesome-icon icon="fa-solid fa-trash" @click="remove()" />
       <font-awesome-icon icon="fa-solid fa-file-export" />
     </div>
-    <table class="table">
-      <thead>
-        <tr class="text-small text-left">
-          <th>Id</th>
-          <th>URL</th>
-          <th>Method</th>
-          <th>Code</th>
-          <th>time</th>
-          <th>data</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
+    <div class="flex justify-around border-2">
+      <div>
+        <p class="mb-3">URL</p>
+        <p
+          :class="borderColor"
           v-for="(history, index) in histories"
           :key="index"
-          :class="httpCode(history) + ' history'"
         >
-          <td class="info-request">{{ history.id }}</td>
-
-          <td class="info-request">{{ history.request }}</td>
-          <td class="info-request">{{ history.method }}</td>
-          <td class="info-request">{{ history.httpCode }}</td>
-          <td class="info-request">{{ history.time }}s</td>
-          <td class="info-request">{{ history.data }}</td>
-        </tr>
-      </tbody>
-    </table>
+          {{ history.request }}
+        </p>
+      </div>
+      <div>
+        <p class="mb-3">Code</p>
+        <p
+          :class="borderColor"
+          v-for="(history, index) in histories"
+          :key="index"
+        >
+          {{ history.httpCode }}
+        </p>
+      </div>
+      <div class="text-center">
+        <p class="mb-3">Time</p>
+        <p
+          :class="borderColor"
+          v-for="(history, index) in histories"
+          :key="index"
+        >
+          {{ history.time }}
+        </p>
+      </div>
+      <div class="text-center">
+        <p class="mb-3">Info</p>
+        <div class="mb-3" v-for="(history, index) in histories" :key="index">
+          <ButtonBack
+            :redirect="{ name: 'HistoryDetail', params: { id: history.id } }"
+            orientation="Right"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import type IHistory from "@/interfaces/history";
 import { defineComponent } from "@vue/runtime-core";
 import { HistoryMutation } from "@/store/modules/history/types";
+import ButtonBack from "@/components/response/ButtonBack.vue";
 
 export default defineComponent({
   name: "history-component",
+  components: {
+    ButtonBack,
+  },
   methods: {
     httpCode(history: IHistory): string {
       const code: number = history.httpCode;
@@ -55,7 +73,10 @@ export default defineComponent({
   },
   computed: {
     histories(): Array<IHistory> {
-      return this.$store.getters.getReversed;
+      return this.$store.getters.getHistories;
+    },
+    borderColor(): string {
+      return "mb-3 border-b-2 border-green-400";
     },
   },
 });
@@ -63,69 +84,25 @@ export default defineComponent({
 <style lang="scss" scoped>
 @use "../../assets/variables" as color;
 
-$green: rgb(102, 199, 115);
-$red: rgb(111, 61, 61);
-
-.container-history {
-  margin-top: 2%;
-  overflow: scroll;
-
-  .options {
-    width: 30%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 35%;
-    margin-bottom: 2%;
-    svg {
-      width: 25px;
-    }
+.green {
+  background-color: color.$green-light;
+}
+.code {
+  &-informations {
+    background-color: color.$error-100;
   }
-
-  .table {
-    border-spacing: 0px 10px;
-    border-collapse: separate;
-    td,
-    th {
-      padding: 20px;
-    }
-    th {
-      font-size: 1.1em;
-    }
-
-    td {
-      margin-bottom: 3%;
-    }
+  &-success {
+    background-color: color.$error-200;
   }
-  .history {
-    background-color: white;
-    border-radius: 3px;
-    color: black;
-    padding: 10px;
+  &-redirection {
+    background-color: color.$error-300;
   }
-
-  .info-request {
-    margin: 0;
-    cursor: pointer;
-  }
-
-  .code {
-    &-informations {
-      background-color: color.$error-100;
+  &-error {
+    &-client {
+      background-color: color.$error-400;
     }
-    &-success {
-      background-color: color.$error-200;
-    }
-    &-redirection {
-      background-color: color.$error-300;
-    }
-    &-error {
-      &-client {
-        background-color: color.$error-400;
-      }
-      &-server {
-        background-color: color.$error-500;
-      }
+    &-server {
+      background-color: color.$error-500;
     }
   }
 }

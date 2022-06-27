@@ -5,3 +5,5 @@ export type TabParameter = {
   descritpion?: string;
   icons: string;
 };
+
+export type Orientation = "Left" | "Right";
