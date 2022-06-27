@@ -2,7 +2,7 @@
   <div class="container-history">
     <div class="options">
       <font-awesome-icon icon="fa-solid fa-trash" @click="remove()" />
-      <font-awesome-icon icon="fa-solid fa-export" />
+      <font-awesome-icon icon="fa-solid fa-file-export" />
     </div>
     <table class="table">
       <thead>

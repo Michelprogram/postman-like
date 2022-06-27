@@ -21,25 +21,26 @@
       </ul>
     </div>
 
-    <keep-alive>
-      <TabsContent
-        v-for="(tab, index) in tabs"
-        :key="index"
-        :type="tab.type"
-        :description="tab.descritpion"
-        v-show="isSelected(index)"
-      />
-    </keep-alive>
+    <TabsContent
+      v-for="(tab, index) in tabs.slice(0, tabs.length - 1)"
+      :key="index"
+      :type="tab.type"
+      :description="tab.descritpion"
+      v-show="isSelected(index)"
+    />
+    <Body v-show="isSelected(tabs.length - 1)" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import type { TabParameter as Tab } from "@/types/index";
 import TabsContent from "@/components/parameters/TabsContent.vue";
+import Body from "@/components/parameters/Body.vue";
 export default defineComponent({
   name: "tabs-parameters",
   components: {
     TabsContent,
+    Body,
   },
   data() {
     return {
@@ -62,6 +63,11 @@ export default defineComponent({
           descritpion:
             "Is a part of a URL that assigns values to specified parameters",
           icons: "fa-gear",
+        },
+        {
+          type: "Body",
+          descritpion: "null",
+          icons: "fa-sitemap",
         },
       ] as Tab[],
     };
@@ -91,6 +97,9 @@ export default defineComponent({
     },
     selectedIndex(index: number): void {
       this.currentTabIndex = index;
+    },
+    isEmpty(tab: Tab): boolean {
+      return tab.descritpion == "";
     },
   },
 });

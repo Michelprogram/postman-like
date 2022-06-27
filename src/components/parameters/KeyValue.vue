@@ -35,7 +35,7 @@
     </div>
     <font-awesome-icon
       :icon="'fa-solid ' + 'fa-trash'"
-      class="w-6 h-6"
+      class="w-6 h-6 cursor-pointer"
       @click="deleteRow"
     />
   </div>
