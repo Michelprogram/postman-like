@@ -2,18 +2,9 @@
   <div class="container-data flex flex-col position-relative">
     <div class="informations flex justify-between items-center">
       <p>Time {{ time }}s</p>
-      <font-awesome-icon
-        class="cursor-pointer"
-        icon="fa-solid fa-copy"
-        @click="copy()"
-      />
-      <a
-        :href="'data:' + exportJson"
-        download="data.json"
-        class="hover:bg-transparent"
-      >
-        <font-awesome-icon icon="fa-solid fa-file-export" />
-      </a>
+
+      <Copy :requestData="response" />
+      <Export :requestData="response" />
     </div>
     <div
       class="dark:border-gray-600 dark:placeholder-gray-400 dark:text-white bg-gray-50 dark:bg-gray-800 block rounded-sm"
@@ -24,19 +15,18 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
+import Export from "@/components/Buttons/Export.vue";
+import Copy from "@/components/Buttons/Copy.vue";
 export default defineComponent({
   name: "data-component",
+  components: {
+    Export,
+    Copy,
+  },
   data() {
     return {
       copied: false,
     };
-  },
-  methods: {
-    copy() {
-      this.copied = true;
-      navigator.clipboard.writeText(this.response);
-      setTimeout(() => (this.copied = false), 500);
-    },
   },
   computed: {
     time(): string {
@@ -47,10 +37,6 @@ export default defineComponent({
     },
     classCopied(): string {
       return this.copied ? "copied pre-content" : "pre-content";
-    },
-    exportJson(): string {
-      const data = this.$store.getters.getResponse;
-      return "text/json;charset=utf-8," + encodeURIComponent(data);
     },
   },
 });

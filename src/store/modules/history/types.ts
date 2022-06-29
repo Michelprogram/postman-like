@@ -1,3 +1,5 @@
+import type { ParameterState } from "@/store/modules/param/types";
+
 export enum HistoryMutation {
   ADD_HISTORY = "ADD_HISTORY",
   DELETE_HISTORY = "DELETE_HISTORY",
@@ -10,12 +12,18 @@ export type Mutations<S = HistoryState> = {
 
 export type Getters<S = HistoryState> = {
   getHistories(state: S): History[];
-  getHistoryById(state: S, id: number): History | undefined;
-  getReversed(state: S): History[];
+  getInformationsById(state: S): (id: number) => Informations | undefined;
+  getReversed(state: S): Informations[];
+  getInformations(state: S): Informations[];
+};
+
+export type Informations = {
+  id: number;
+  history: History;
+  parameters: ParameterState;
 };
 
 export type History = {
-  id: number;
   time: string;
   httpCode: number;
   data: string;
@@ -24,18 +32,26 @@ export type History = {
 };
 
 export type HistoryState = {
-  histories: Array<History>;
+  histories: Array<Informations>;
 };
 
 export const state: HistoryState = {
   histories: [
     {
       id: 0,
-      time: "0",
-      httpCode: 200,
-      data: "string",
-      request: "https://jsonplaceholder.typicode.com/posts/1",
-      method: "GET",
+
+      history: {
+        time: "0",
+        httpCode: 200,
+        data: "string",
+        request: "https://jsonplaceholder.typicode.com/posts/1",
+        method: "GET",
+      },
+      parameters: {
+        authorization: [],
+        queries: [],
+        headers: [],
+      },
     },
   ],
 };

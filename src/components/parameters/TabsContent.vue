@@ -6,19 +6,19 @@
       :key="data.id"
       :index="index"
       :option="data"
+      :deleted="true"
       :type="type"
     />
     <Button :type="type" />
   </div>
 </template>
 <script lang="ts">
-import type { TypeTabs } from "@/store/modules/param/types";
 import Title from "@/components/parameters/Title.vue";
 import KeyValue from "@/components/parameters/KeyValue.vue";
-import Button from "@/components/parameters/AddButton.vue";
+import Button from "@/components/Buttons/Add.vue";
 import type { Param } from "@/store/modules/param/types";
 
-import { defineComponent, type PropType } from "@vue/runtime-core";
+import { defineComponent } from "@vue/runtime-core";
 export default defineComponent({
   name: "tabs-content",
   props: {

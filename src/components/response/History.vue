@@ -1,45 +1,33 @@
 <template>
-  <div class="flex flex-col justify-around">
-    <div class="w-full flex justify-around">
-      <font-awesome-icon icon="fa-solid fa-trash" @click="remove()" />
-      <font-awesome-icon icon="fa-solid fa-file-export" />
-    </div>
-    <div class="flex justify-around border-2">
+  <div class="flex flex-col mt-5">
+    <div class="flex justify-around">
       <div>
         <p class="mb-3">URL</p>
         <p
           :class="borderColor"
-          v-for="(history, index) in histories"
+          v-for="(info, index) in informations"
           :key="index"
         >
-          {{ history.request }}
+          {{ info.history.request }}
         </p>
       </div>
       <div>
         <p class="mb-3">Code</p>
-        <p
-          :class="borderColor"
-          v-for="(history, index) in histories"
-          :key="index"
-        >
-          {{ history.httpCode }}
+        <p class="mb-3" v-for="(info, index) in informations" :key="index">
+          {{ info.history.httpCode }}
         </p>
       </div>
       <div class="text-center">
         <p class="mb-3">Time</p>
-        <p
-          :class="borderColor"
-          v-for="(history, index) in histories"
-          :key="index"
-        >
-          {{ history.time }}
+        <p class="mb-3" v-for="(info, index) in informations" :key="index">
+          {{ info.history.time }}
         </p>
       </div>
       <div class="text-center">
         <p class="mb-3">Info</p>
-        <div class="mb-3" v-for="(history, index) in histories" :key="index">
+        <div class="mb-3" v-for="(info, index) in informations" :key="index">
           <ButtonBack
-            :redirect="{ name: 'HistoryDetail', params: { id: history.id } }"
+            :redirect="{ name: 'HistoryDetail', params: { id: info.id } }"
             orientation="Right"
           />
         </div>
@@ -50,8 +38,11 @@
 <script lang="ts">
 import type IHistory from "@/interfaces/history";
 import { defineComponent } from "@vue/runtime-core";
-import { HistoryMutation } from "@/store/modules/history/types";
-import ButtonBack from "@/components/response/ButtonBack.vue";
+import {
+  HistoryMutation,
+  type Informations,
+} from "@/store/modules/history/types";
+import ButtonBack from "@/components/Buttons/Back.vue";
 
 export default defineComponent({
   name: "history-component",
@@ -72,8 +63,11 @@ export default defineComponent({
     },
   },
   computed: {
-    histories(): Array<IHistory> {
+    histories(): IHistory[] {
       return this.$store.getters.getHistories;
+    },
+    informations(): Informations[] {
+      return this.$store.getters.getInformations;
     },
     borderColor(): string {
       return "mb-3 border-b-2 border-green-400";

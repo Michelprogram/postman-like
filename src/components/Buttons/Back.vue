@@ -1,6 +1,6 @@
 <template>
   <router-link :to="redirect">
-    <div class="green rounded-lg cursor-pointer text-center">
+    <div class="green rounded-lg cursor-pointer text-center text-white">
       <font-awesome-icon
         icon="fa-solid fa-arrow-right"
         :class="arrowOrientation"

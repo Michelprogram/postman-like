@@ -5,6 +5,7 @@
         class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
         type="checkbox"
         v-model="active"
+        :disabled="isDisable"
       />
     </div>
 
@@ -16,7 +17,7 @@
           'input-key-value border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
         "
         placeholder="Your parameter key"
-        :disabled="!active"
+        :disabled="isDisable"
         v-model="key"
       />
     </div>
@@ -29,11 +30,12 @@
           'input-key-value border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
         "
         placeholder="Your parameter value"
-        :disabled="!active"
+        :disabled="isDisable"
         v-model="value"
       />
     </div>
     <font-awesome-icon
+      v-if="deleted"
       :icon="'fa-solid ' + 'fa-trash'"
       class="w-6 h-6 cursor-pointer"
       @click="deleteRow"
@@ -63,6 +65,7 @@ export default defineComponent({
       type: Number,
       required: true,
     },
+    deleted: Boolean,
   },
   data() {
     return {
@@ -86,6 +89,9 @@ export default defineComponent({
       const disable = "bg-gray-50 dark:bg-red-300 ";
 
       return this.active ? active : disable;
+    },
+    isDisable(): boolean {
+      return !this.active || !this.deleted;
     },
   },
   watch: {

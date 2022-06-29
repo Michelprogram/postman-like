@@ -4,9 +4,9 @@ import {
   type RouteRecordRaw,
 } from "vue-router";
 
-import Home from "../components/Home.vue";
-import HistoryDetail from "@/components/response/DetailHistory.vue";
-
+import Home from "@/views/Home.vue";
+import HistoryDetail from "@/views/DetailHistory.vue";
+import store from "@/store/index";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -18,6 +18,12 @@ const routes: Array<RouteRecordRaw> = [
     name: "HistoryDetail",
     component: HistoryDetail,
     props: true,
+    beforeEnter: (to) => {
+      const id = to.params.id;
+      if (store.getters.getInformationsById(id) == undefined) {
+        return "/";
+      }
+    },
   },
 ];
 

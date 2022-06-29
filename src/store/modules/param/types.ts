@@ -56,7 +56,7 @@ export enum ParameterMutation {
 
 export interface Getters {
   getParameterById(state: ParameterState, id: number): Param;
-  getParameters(state: ParameterState): Param[];
+  getParameters(state: ParameterState): ParameterState;
   getParametersString(state: ParameterState): string;
   getHeaders(state: ParameterState): Param[];
   getByType(state: ParameterState): (type: TypeTabs) => Param[];

@@ -53,6 +53,7 @@ export default defineComponent({
       this.triggerAnimate();
       this.controller = new AbortController();
       const signal = this.controller.signal;
+      let rep = "";
 
       /*       this.timer = setTimeout(() => {
         this.triggerAnimate();
@@ -68,6 +69,14 @@ export default defineComponent({
       })
         .then((response) => {
           response.json().then((c: any) => {
+            const history: IHistory = {
+              time: this.timer + "",
+              httpCode: 200,
+              data: JSON.stringify(c, undefined, 2),
+              request: this.uri,
+              method: this.method,
+            };
+            this.$store.commit(HistoryMutation.ADD_HISTORY, history);
             this.$store.commit(
               StatsMutation.RESPONSE_STATS,
               JSON.stringify(c, undefined, 2)
@@ -79,14 +88,6 @@ export default defineComponent({
         })
         .finally(() => {
           this.triggerAnimate();
-          const history: IHistory = {
-            time: this.timer + "",
-            httpCode: 200,
-            data: "string",
-            request: this.uri,
-            method: this.method,
-          };
-          this.$store.commit(HistoryMutation.ADD_HISTORY, history);
         });
     },
     triggerAnimate() {

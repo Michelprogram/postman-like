@@ -15,7 +15,7 @@
             :class="isSelectedClassSvg(index)"
           />
           {{ tab.type }}
-          <span v-if="isSizable(tab.type)" class="ml-1 text-xs">
+          <span v-if="isSizable(tab.type)" class="ml-1 text-xs number-items">
             ({{ size(tab.type) }})
           </span>
         </a>
@@ -31,6 +31,7 @@ export default defineComponent({
   name: "header-tab",
   props: {
     currentTabIndex: Number,
+    sizeable: Boolean,
     tabs: Array as () => Tab[],
   },
   data() {
@@ -69,7 +70,10 @@ export default defineComponent({
       return this.$store.getters.getSizeByType(type);
     },
     isSizable(type: TypeTabs): boolean {
-      return !(type == "Body" || type == "Response" || type == "History");
+      return (
+        !(type == "Body" || type == "Response" || type == "History") &&
+        this.sizeable
+      );
     },
   },
 });
