@@ -3,29 +3,25 @@
     <div class="flex justify-around">
       <div>
         <p class="mb-3">URL</p>
-        <p
-          v-for="(info, index) in informations"
-          :class="borderColor(info.history)"
-          :key="index"
-        >
-          {{ info.history.request }}
-        </p>
+        <div v-for="(info, index) in informations" class="h-10" :key="index">
+          <p :class="borderColor(info.history)">{{ info.history.request }}</p>
+        </div>
       </div>
       <div>
         <p class="mb-3">Code</p>
-        <p class="mb-3" v-for="(info, index) in informations" :key="index">
+        <p class="h-10" v-for="(info, index) in informations" :key="index">
           {{ info.history.httpCode }}
         </p>
       </div>
       <div class="text-center">
         <p class="mb-3">Time</p>
-        <p class="mb-3" v-for="(info, index) in informations" :key="index">
+        <p class="h-10" v-for="(info, index) in informations" :key="index">
           {{ info.history.time }}
         </p>
       </div>
       <div class="text-center">
         <p class="mb-3">Info</p>
-        <div class="mb-3" v-for="(info, index) in informations" :key="index">
+        <div class="h-10" v-for="(info, index) in informations" :key="index">
           <ButtonBack
             :redirect="{ name: 'HistoryDetail', params: { id: info.id } }"
             orientation="Right"

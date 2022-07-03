@@ -33,8 +33,7 @@ export default defineComponent({
   },
   methods: {
     prettier() {
-      this.body.replace("'", '"');
-      const data = JSON.parse(this.body);
+      const data = JSON.parse(this.body.replace(/'/g, '"'));
       this.body = JSON.stringify(data, undefined, 4);
     },
   },

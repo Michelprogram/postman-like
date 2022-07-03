@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="overflow-scroll w-4/5 h-2/5">
+    <div class="overflow-scroll w-4/5 h-72">
       <HeaderTab
         :tabs="tabs"
         :sizeable="false"

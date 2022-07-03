@@ -55,11 +55,7 @@ export default defineComponent({
       this.controller = new AbortController();
       const signal = this.controller.signal;
       const request: Request = new Request(this.fullUri, signal);
-      request
-        .send()
-        .then()
-        .catch((err) => console.log("Test" + err))
-        .finally(() => this.triggerAnimate());
+      request.send().finally(() => this.triggerAnimate());
     },
     triggerAnimate() {
       this.animate = !this.animate;
