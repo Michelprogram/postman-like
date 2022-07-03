@@ -25,7 +25,7 @@ export const getters: GetterTree<ParameterState, RootState> & Getters = {
   },
   getByType:
     (state) =>
-    (type: TypeTabs): Param[] => {
+    (type: TypeTabs): Param[] | string => {
       switch (type) {
         case "Headers":
           return state.headers;
@@ -33,6 +33,8 @@ export const getters: GetterTree<ParameterState, RootState> & Getters = {
           return state.authorization;
         case "Query":
           return state.queries;
+        case "Body":
+          return state.body;
         default:
           return [];
       }

@@ -88,4 +88,10 @@ export const mutations: MutationTree<ParameterState> & Mutations = {
         break;
     }
   },
+  [ParameterMutation.UPDATE_BODY]: (
+    state: ParameterState,
+    body: string
+  ): void => {
+    state.body = body;
+  },
 };

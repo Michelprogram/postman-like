@@ -24,6 +24,7 @@ export type ParameterState = {
   headers: Array<Param>;
   authorization: Array<Param>;
   queries: Array<Param>;
+  body: string;
 };
 
 export const state: ParameterState = {
@@ -44,12 +45,14 @@ export const state: ParameterState = {
     },
   ],
   authorization: [],
+  body: "",
 };
 
 export enum ParameterMutation {
   UPDATE_VALUE = "UPDATE_VALUE",
   UPDATE_KEY = "UPDATE_KEY",
   UPDATE_ACTIVE = "UPDATE_ACTIVE",
+  UPDATE_BODY = "UPDATE_BODY",
   ADD = "ADD",
   DELETE = "DELETE",
 }
@@ -59,7 +62,7 @@ export interface Getters {
   getParameters(state: ParameterState): ParameterState;
   getParametersString(state: ParameterState): string;
   getHeaders(state: ParameterState): Param[];
-  getByType(state: ParameterState): (type: TypeTabs) => Param[];
+  getByType(state: ParameterState): (type: TypeTabs) => Param[] | string;
   getSizeByType(state: ParameterState): (type: TypeTabs) => number;
 }
 
@@ -75,4 +78,5 @@ export interface Mutations {
     state: ParameterState,
     options: Options
   ): void;
+  [ParameterMutation.UPDATE_BODY](state: ParameterState, body: string): void;
 }

@@ -19,6 +19,7 @@
   </div>
 </template>
 <script lang="ts">
+import { ParameterMutation } from "@/store/modules/param/types";
 import { defineComponent } from "@vue/runtime-core";
 import Title from "./Title.vue";
 export default defineComponent({
@@ -34,6 +35,11 @@ export default defineComponent({
     prettier() {
       const data = JSON.parse(this.body);
       this.body = JSON.stringify(data, undefined, 4);
+    },
+  },
+  watch: {
+    body(): void {
+      this.$store.commit(ParameterMutation.UPDATE_BODY, this.body);
     },
   },
   components: { Title },
