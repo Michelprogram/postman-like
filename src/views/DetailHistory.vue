@@ -10,7 +10,9 @@
         History n°{{ id }}
       </h1>
     </div>
-    <div class="flex justify-between w-4/5 border-b-2 border-green-light">
+    <div
+      :class="'flex justify-between w-4/5 ' + borderColor(informations.history)"
+    >
       <div>
         <p class="text-lg text-white">URL</p>
         <p>{{ informations.history.request }}</p>
@@ -85,6 +87,8 @@ import Title from "@/components/parameters/Title.vue";
 import Tabs from "@/constants/Tabs";
 import type { TypeTabs } from "@/store/modules/param/types";
 import type { Informations } from "@/store/modules/history/types";
+import borderColor from "@/mixins/borderColor";
+
 export default defineComponent({
   name: "info-history",
   components: {
@@ -121,6 +125,7 @@ export default defineComponent({
       if (type == "Query") return this.informations.parameters.queries;
     },
   },
+  mixins: [borderColor],
 });
 </script>
 <style lang="scss" scoped>

@@ -3,6 +3,11 @@ import store from "@/store";
 import { HistoryMutation } from "@/store/modules/history/types";
 import type { Param } from "@/store/modules/param/types";
 import { StatsMutation } from "@/store/modules/stats/types";
+import axios, { AxiosError, type AxiosRequestConfig } from "axios";
+
+type Headers = {
+  [x: string]: string;
+};
 
 class Request {
   private body: string;
@@ -20,17 +25,13 @@ class Request {
   }
 
   private initHeaders = (): Headers => {
-    const headers = [
-      ...store.getters.getByType("Headers"),
-      ...store.getters.getByType("Authorization"),
-    ];
-    const content = new Headers();
+    const res = {} as { [x: string]: string };
 
-    headers.forEach((header: Param) => {
-      content.append(header.key, header.value);
+    store.getters.getByType("Headers").forEach((header: Param) => {
+      res[header.key] = header.value;
     });
 
-    return content;
+    return res;
   };
 
   private initMethod = (): string => {
@@ -45,19 +46,16 @@ class Request {
     return JSON.stringify(json, undefined, 0);
   };
 
-  private setParams = (): RequestInit => {
-    let params: RequestInit = {
-      mode: "cors",
-      signal: this.signal,
-      cache: "no-cache",
+  private setParams = (): AxiosRequestConfig => {
+    const params: AxiosRequestConfig = {
+      url: this.uri,
       method: this.method,
       headers: this.header,
+      signal: this.signal,
     };
 
     if (this.method != "GET") {
-      params = {
-        body: JSON.stringify(this.body, undefined, 0),
-      };
+      params.data = this.body;
     }
 
     return params;
@@ -86,19 +84,30 @@ class Request {
   };
 
   public send = async () => {
-    const params: RequestInit = this.setParams();
+    const options = this.setParams();
 
-    const request = await fetch(this.uri, params);
+    let request;
+    let error: AxiosError = {} as AxiosError;
+    try {
+      request = await axios(options);
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        error = err;
+      }
+    } finally {
+      if (request != undefined) {
+        const response = request.data;
 
-    const response = await request.json();
+        this.pushHistory(response, request.status);
 
-    this.pushHistory(response, request.status);
+        this.updateData(response);
+      } else {
+        const message = error.message;
+        const code = error.response ? error.response.status : 0;
 
-    this.updateData(response);
-
-    if (!request.ok) {
-      const message = "Failed fetch ";
-      throw new Error(message);
+        this.pushHistory(message, code);
+        this.updateData(message);
+      }
     }
   };
 }

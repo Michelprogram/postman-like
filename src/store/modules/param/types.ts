@@ -38,9 +38,8 @@ export const state: ParameterState = {
     },
     {
       id: 1,
-      key: "User-agent",
-      value:
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/43.4",
+      key: "Content-type",
+      value: "application/json; charset=utf-8",
       active: true,
     },
   ],

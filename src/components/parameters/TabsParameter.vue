@@ -24,6 +24,7 @@ import Tabs from "@/constants/Tabs";
 import TabsContent from "@/components/parameters/TabsContent.vue";
 import Body from "@/components/parameters/Body.vue";
 import HeaderTab from "../HeaderTab.vue";
+
 export default defineComponent({
   name: "tabs-parameters",
   components: {
