@@ -7,14 +7,17 @@ import {
 import Home from "@/views/Home.vue";
 import HistoryDetail from "@/views/DetailHistory.vue";
 import store from "@/store/index";
+
+const PREFIX = "/postman-like";
+
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
+    path: PREFIX + "/",
     name: "Home",
     component: Home,
   },
   {
-    path: "/history/:id",
+    path: PREFIX + "/history/:id",
     name: "HistoryDetail",
     component: HistoryDetail,
     props: true,
