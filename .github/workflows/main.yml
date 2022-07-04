@@ -6,7 +6,7 @@ name: CI for github Pages
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,32 +19,30 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
+
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-        
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.1.1
         with:
           node-version: 12.x
-                      
+
       - name: Install dependecies
         run: npm i
-        
+
       - name: Build project
         run: npm run build
 
       - name: Add to subtree
         run: |
-          git add dist
+          git add dist -f
           git commit -m "$(git log '--format=format:%H' master -1)"
-          
+
       - name: Push to subtree
         run: |
           git subtree split --prefix dist -b gh-pages
           git push -f origin gh-pages:gh-pages
           git branch -D gh-pages
-
-
