@@ -51,6 +51,7 @@ export const state: HistoryState = {
         authorization: [],
         queries: [],
         headers: [],
+        body: "",
       },
     },
   ],

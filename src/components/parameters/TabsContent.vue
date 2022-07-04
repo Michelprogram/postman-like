@@ -16,13 +16,16 @@
 import Title from "@/components/parameters/Title.vue";
 import KeyValue from "@/components/parameters/KeyValue.vue";
 import Button from "@/components/Buttons/Add.vue";
-import type { Param } from "@/store/modules/param/types";
+import type { Param, TypeTabs } from "@/store/modules/param/types";
 
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, type PropType } from "@vue/runtime-core";
 export default defineComponent({
   name: "tabs-content",
   props: {
-    type: String,
+    type: {
+      type: Object as PropType<TypeTabs>,
+      required: true,
+    },
     description: String,
   },
   computed: {
