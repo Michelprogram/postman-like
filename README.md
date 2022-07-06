@@ -70,6 +70,8 @@ I was inspired by this video -> https://www.youtube.com/watch?v=qQR0mfFGRmo
 
 To get a local copy up and running follow these simple example steps.
 
+The project should be run at : https://michelprogram.github.io/postman-like/
+
 ### 🗺️ Prerequisites
 
 You only need Nodejs version 16 and npm version 8
